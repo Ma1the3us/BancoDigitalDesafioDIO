@@ -1,15 +1,13 @@
-public class ContaCorrente extends ContaBancaria {
-
-    private double credito; // limite de crédito
-
-    public ContaCorrente(int numeroAgencia, int numeroConta, double saldo, double credito) {
-        super(numeroAgencia, numeroConta, saldo);
-        this.credito = credito;
+package banco;
+public class ContaPoupanca extends ContaBancaria {
+    
+    public ContaPoupanca(int numeroAgencia, double saldo) {
+        super(numeroAgencia,  saldo);
     }
 
     @Override
     public double transferenciaBancaria(double valor, ContaBancaria contaDestino) {
-    if (valor > 0 && valor <= saldo + credito) { // saldo + crédito para ContaCorrente
+    if (valor > 0 && valor <= saldo) { 
         saldo -= valor; // debita da conta atual
         contaDestino.saldo += valor; // credita na conta destino
 
@@ -28,19 +26,24 @@ public class ContaCorrente extends ContaBancaria {
             System.out.println("Por favor, selecione uma quantia válida para depósito");
         } else {
             saldo += deposito;
-            historico.add(new Transacao("Deposito", deposito));
+            historico.add(new Transacao("Deposito:", deposito));
         }
         return saldo;
     }
 
     @Override
     public double sacar(double saque) {
-        if (saque <= 0 || saque > saldo + credito) {
+        if (saque <= 0 || saque > saldo) {
             System.out.println("Selecione um valor válido para saque");
         } else {
             saldo -= saque;
-            historico.add(new Transacao("Saque", saque));
+            historico.add(new Transacao("Saque:", saque));
         }
         return saldo;
+    }
+
+    // Método específico da poupança
+    public void renderJuros() {
+        saldo += saldo * 0.01; // 1% ao mês
     }
 }
