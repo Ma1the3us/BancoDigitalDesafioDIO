@@ -2,12 +2,15 @@ package banco;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public abstract class ContaBancaria {
     protected int numeroAgencia;
     protected int numeroConta;
     protected double saldo;
     protected static int SEQUENCIAL = 1;
     protected List<Transacao> historico; // lista de transações
+    
+
 
     public ContaBancaria(int numeroAgencia, double saldo) {
         this.numeroAgencia = numeroAgencia;
@@ -39,7 +42,7 @@ public abstract class ContaBancaria {
     // método para imprimir extrato
     public void imprimirExtrato() {
         System.out.println(
-                "Extrato da Conta: " + numeroConta + " - Agência: " + numeroAgencia);
+                "Extrato da Conta: " + numeroConta + " - Agência: " + numeroAgencia );
         System.out.println("-----------------------------------");
         for (Transacao t : historico) {
             System.out.println(t);
@@ -47,5 +50,7 @@ public abstract class ContaBancaria {
         System.out.println("Saldo atual: R$" + saldo);
         System.out.println();
     }
+
+    
 
 }

@@ -5,7 +5,7 @@ import cliente.Cliente;
 public class App {
 
     public static void main(String[] args) {
-
+       
         // Cliente 1 com Conta Corrente
         ContaBancaria contaCorrente1 = new ContaCorrente(123,  1000); // saldo = 1000, crédito = 500
         Cliente cliente1 = new Cliente("Joao", "12345678900", contaCorrente1);
@@ -94,6 +94,8 @@ public class App {
         contaPoupanca1.imprimirExtrato();
         contaCorrente2.imprimirExtrato();
         contaPoupanca2.imprimirExtrato();
+
+        Cliente.ListaClientes();
 
     }
 }
