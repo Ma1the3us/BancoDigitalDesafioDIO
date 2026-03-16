@@ -1,20 +1,57 @@
-## Getting Started
+# Banco Digital em Java - Projeto de POO
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Descrição do Projeto
+Este projeto é um **banco digital desenvolvido em Java**, criado como desafio da **DIO (Digital Innovation One)** para reforçar conhecimentos em **Programação Orientada a Objetos (POO)**. Ele explora os pilares da orientação a objetos, como **herança, encapsulamento e polimorfismo**, aplicando-os ao contexto bancário.
 
-## Folder Structure
+O projeto simula operações bancárias reais, como **depósitos, saques, transferências**, e inclui **extrato detalhado** com data e hora de cada transação. Além disso, há gerenciamento de **clientes**, que podem possuir uma ou mais contas bancárias.
 
-The workspace contains two folders by default, where:
+## Estrutura do Projeto
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+### Packages e Classes
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+#### Package `banco`
+Contém todas as classes relacionadas às **contas bancárias e transações**:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+1. **`ContaBancaria`** *(abstract)*  
+   - Classe base para todas as contas bancárias.  
+   - Atributos: `numeroAgencia`, `numeroConta`, `saldo`, `historico`.  
+   - Métodos abstratos: `transferenciaBancaria`, `depositar`, `sacar`.  
+   - Método concreto `imprimirExtrato()` exibe o histórico da conta com valores e datas.  
 
-## Dependency Management
+2. **`ContaCorrente`** *(extends ContaBancaria)*  
+   - Permite saques e transferências usando **saldo + limite de crédito**.  
+   - Implementa depósitos, saques e transferências, registrando cada transação.  
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
-# BancoDigitalDesafioDIO
-# BancoDigitalDesafioDIO
+3. **`ContaPoupanca`** *(extends ContaBancaria)*  
+   - Opera apenas com saldo disponível (sem limite de crédito).  
+   - Possui método exclusivo `renderJuros()` para aplicar **1% de juros ao mês**.  
+
+4. **`Transacao`**  
+   - Representa cada operação financeira (depósito, saque, transferência).  
+   - Armazena **tipo de transação, valor e data/hora**.  
+
+#### Package `cliente`
+Contém a classe `Cliente`, que representa clientes do banco e suas contas:
+
+1. **`Cliente`**  
+   - Atributos: `nome`, `cpf`, lista de `ContaBancaria`.  
+   - Permite criar clientes com uma conta inicial e adicionar novas contas depois.  
+   - Mantém uma lista estática de todos os clientes cadastrados.  
+   - Método `ListaClientes()` exibe todos os clientes do banco.  
+
+## Funcionalidades
+
+- **Gerenciamento de Clientes:** Cadastra clientes e associa contas bancárias.  
+- **Depósito:** Adiciona valores às contas e registra no histórico.  
+- **Saque:** Retira valores das contas respeitando saldo e limite de crédito.  
+- **Transferência:** Move valores entre contas, atualizando saldos e histórico de ambas.  
+- **Extrato:** Mostra todas as transações realizadas com data/hora e saldo atual.  
+- **Rendimento da Poupança:** Aplica juros mensais na ContaPoupanca.  
+
+## Tecnologias Utilizadas
+- **Java SE 8+**  
+- Conceitos de **POO**: abstração, herança, polimorfismo, encapsulamento.  
+
+## Repositório do Projeto
+
+   git clone <URL_DO_REPOSITORIO>
